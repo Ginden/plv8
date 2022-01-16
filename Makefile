@@ -94,7 +94,7 @@ $(AUTOV8_DIR): $(AUTOV8_DEPOT_TOOLS)
 	&& cd v8 \
 	&& git checkout $(AUTOV8_VERSION) \
 	&& gclient sync \
-	&& git apply ../../patches/*.patch
+	&& (git apply ../../patches/*.patch || true)
 
 	# patch v8 with our clang and gn
 	cd $(AUTOV8_DIR) \
@@ -114,7 +114,7 @@ $(AUTOV8_DIR): $(AUTOV8_DEPOT_TOOLS)
 	&& cd v8 \
 	&& git checkout $(AUTOV8_VERSION) \
 	&& gclient sync \
-	&& git apply ../../patches/*.patch \
+	&& (git apply ../../patches/*.patch || true) \
 	&& tools/dev/v8gen.py $(PLATFORM) -- $(V8_OPTIONS)
 endif
 
